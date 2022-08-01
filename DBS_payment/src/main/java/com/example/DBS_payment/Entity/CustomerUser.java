@@ -3,21 +3,23 @@ package com.example.DBS_payment.Entity;
 import com.fasterxml.jackson.annotation.JsonTypeId;
 import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.List;
 @Entity
+@Embeddable
+@Table(name = "customerId")
 public class CustomerUser {
     @Id
-    @Length(max = 11)
+
     private Integer userId;
-    @Id
-    @Length(max = 100)
+
+
     private String userName;
-    @Size(max = 11)
+
+    @ElementCollection(targetClass=Customer.class)
    private List<Customer> customerId;
-    @Length(max = 100)
+
     private String userPassword;
 
 

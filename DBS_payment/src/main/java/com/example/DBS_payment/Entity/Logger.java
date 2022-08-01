@@ -2,21 +2,23 @@ package com.example.DBS_payment.Entity;
 
 import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.constraints.Size;
 import java.util.List;
 @Entity
+@Embeddable
+@Table(name = "Logger")
 public class Logger {
     @Id
-    @Size(max = 11)
+
     private Integer loggerID;
-    @Length(max = 11)
+
+    @ElementCollection(targetClass=Customer.class)
     private List<Customer> customerId;
-    @Size(max = 11)
+
     private  Integer userId;
-    @Size
+
     private  Integer employeeId;
     private  String screenName;
     private  String action;
