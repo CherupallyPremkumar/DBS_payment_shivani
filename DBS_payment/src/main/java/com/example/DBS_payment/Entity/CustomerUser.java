@@ -1,12 +1,20 @@
 package com.example.DBS_payment.Entity;
 
 import com.fasterxml.jackson.annotation.JsonTypeId;
-import org.hibernate.validator.constraints.Length;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
+
 import java.util.List;
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 @Embeddable
 @Table(name = "customerId")
 public class CustomerUser {
@@ -17,41 +25,13 @@ public class CustomerUser {
 
     private String userName;
 
-    @ElementCollection(targetClass=Customer.class)
-   private List<Customer> customerId;
+    @OneToOne(targetEntity = Customer.class,cascade=CascadeType.ALL)
+    @JoinColumn(name = "fk_custom_customer_id")
+    private List<Customer>  customer;
+
 
     private String userPassword;
 
 
-    public Integer getUserId() {
-        return userId;
-    }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public List<Customer> getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(List<Customer> customerId) {
-        this.customerId = customerId;
-    }
-
-    public String getUserPassword() {
-        return userPassword;
-    }
-
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
-    }
 }
