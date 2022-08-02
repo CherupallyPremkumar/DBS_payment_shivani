@@ -29,7 +29,10 @@ public class Logger {
 
     private  Integer userId;
 
-    private  Integer employeeId;
+    @ManyToOne(targetEntity = Employee.class,cascade=CascadeType.ALL)
+    @JoinColumn(name = "fk_employee_ID")
+
+    private List<Employee>  employeeId;
     private  String screenName;
     private  String action;
     private  String ipAddress;
