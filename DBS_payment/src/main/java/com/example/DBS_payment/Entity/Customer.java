@@ -17,7 +17,6 @@ import java.util.List;
 @Table(name = "customer")
 public class Customer  {
     @Id
-
     private Integer customerId;
 
 
